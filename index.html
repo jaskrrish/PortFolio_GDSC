@@ -60,11 +60,33 @@
       nav ul li a {
         text-decoration: none;
         color: white;
+        position: relative;
         font-family: "Inter", sans-serif;
       }
-      nav ul li a:hover {
+      nav ul li a:hover, nav ul li a:focus {
         color: rgb(153, 97, 206);
       }
+      /*  */
+      /*UnderLine Effect */
+      nav ul li a::after{
+        content: '';
+        height: 2px;
+        width: 100%;
+        background-color: rgb(153, 97, 206);
+        position: absolute;
+        left: 0;
+        bottom: -8px;
+        opacity: 0;
+        transition: all 0.2s ease-in;
+        pointer-events: none;
+      }
+      nav ul li a:hover::after,
+      nav ul li a:focus::after,
+      nav ul li a:active
+      {
+        opacity: 1;
+      }
+      /*  */
       .left {
         font-size: 1.5rem;
         font-family: "Poppins", sans-serif;
@@ -300,10 +322,10 @@
         </div>
         <div class="right">
           <ul>
-            <li><a href="./index.html">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#education">Education</a></li>
+            <li><a class=".nav_link" href="./index.html">Home</a></li>
+            <li><a class=".nav_link" href="#about">About</a></li>
+            <li><a class=".nav_link" href="#skills">Skills</a></li>
+            <li><a class=".nav_link" href="#education">Education</a></li>
           </ul>
         </div>
       </nav>
@@ -453,6 +475,15 @@
         strings: ["JAS KRRISH"],
         typeSpeed: 50,
       });
+    </script>
+    <script>
+      const navLinkEls = document.querySelectorAll('.nav_link');
+      navLinkEls.forEach(navLinkEL=>{
+        navLinkEL.addEventListener('click',()=>{
+          document.querySelector('.active')?.classList.remove('active')
+          navLinkEL.classList.add('active')
+        })
+      })
     </script>
   </body>
 </html>
